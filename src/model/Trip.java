@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Date;
-import java.util.Objects;
 
 public abstract class Trip extends Travel
 {
@@ -24,29 +23,29 @@ public abstract class Trip extends Travel
         this.date = date;
     }
 
-    //methods for changing fields:
+    //methods for setting fields:
 
-    public void changeName(String name)
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    public void changeRating(int rating)
+    public void setRating(int rating)
     {
         this.rating = rating;
     }
 
-    public void changeNotes(String notes)
+    public void setNotes(String notes)
     {
         this.notes = notes;
     }
 
-    public void changeDistance(int distance)
+    public void setDistance(int distance)
     {
         this.distance = distance;
     }
 
-    public void changeDate(Date date)
+    public void setDate(Date date)
     {
         this.date = date;
     }
@@ -78,17 +77,4 @@ public abstract class Trip extends Travel
         return date;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Trip trip = (Trip) o;
-        return  distance == trip.distance &&
-                Objects.equals(name, trip.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, rating, notes, distance, date);
-    }
 }

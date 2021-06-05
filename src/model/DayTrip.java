@@ -7,7 +7,7 @@ public class DayTrip extends Trip
     private String type;
     private int dollars;
 
-    //Constructor for DayTrip where name, rating, notes, and distance serve the same purpose as in Trip and
+    //Constructor for DayTrip where name, rating, notes, distance, and date serve the same purpose as in Trip and
     //type refers to the type of excursion (eg. picnic, museum, etc) and dollars refers to the cost of the excursion in
     //dollars (0.00 if free)
     public DayTrip(String name, int rating, String notes, int distance, Date date, String type, int dollars)
@@ -17,14 +17,15 @@ public class DayTrip extends Trip
         this.dollars = dollars;
     }
 
-    //sets this.type to type
-    public void changeType(String type)
+    //getters and setters for fields
+
+    public void setType(String type)
     {
         this.type = type;
     }
 
-    //sets this.dollars to dollars
-    public void changeDollars(int dollars)
+
+    public void setDollars(int dollars)
     {
         this.dollars = dollars;
     }
