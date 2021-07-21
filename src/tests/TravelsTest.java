@@ -1,5 +1,7 @@
-package model.tests;
+package tests;
 
+import exceptions.TravelsException;
+import exceptions.VacationTripException;
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

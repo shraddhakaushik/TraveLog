@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.TravelsException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

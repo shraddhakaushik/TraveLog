@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.TravelsException;
 import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;

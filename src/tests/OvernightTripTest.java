@@ -1,4 +1,4 @@
-package model.tests;
+package tests;
 
 public class OvernightTripTest {
 }

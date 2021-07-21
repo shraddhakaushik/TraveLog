@@ -32,6 +32,16 @@ public class Hike extends Trip {
 
     @Override
     public JSONObject toJson() {
-        return null; //TODO stub
+        JSONObject json = new JSONObject();
+        json.put("subclass", "Hike");
+        json.put("name", name);
+        json.put("rating", rating);
+        json.put("notes", notes);
+        json.put("distance", distance);
+        json.put("day", date.getDate());
+        json.put("month", date.getMonth());
+        json.put("year", date.getYear());
+        json.put("difficulty", difficulty);
+        return json;
     }
 }

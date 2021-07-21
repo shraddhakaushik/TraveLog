@@ -5,9 +5,9 @@ import org.json.JSONObject;
 import java.util.Date;
 
 public abstract class Travel {
-    private String notes;
-    private String name;
-    private Date date;
+    protected String notes;
+    protected String name;
+    protected Date date;
 
     public Travel(String name, String notes, Date date) {
         this.name = name;

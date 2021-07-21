@@ -3,11 +3,9 @@ package model;
 import java.util.Date;
 
 public abstract class Trip extends Travel {
-    private String name;
-    private int rating;
-    private String notes;
-    private int distance;
-    private Date date;
+    protected int rating;
+    protected int distance;
+
 
     //Constructor for Trip where name represents the name of the location, rating represents an integer value between
     //1 and 5 to indicate how enjoyable the trip was, 5 being "very enjoyable". Notes represents any extra notes the

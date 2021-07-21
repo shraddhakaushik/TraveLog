@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.VacationTripException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -73,6 +74,15 @@ public class Vacation extends Travel {
 
     @Override
     public JSONObject toJson() {
-        return null; //TODO stub
+        JSONObject json = new JSONObject();
+        json.put("subclass", "Vacation");
+        json.put("name", name);
+        json.put("duration", duration);
+        json.put("cost", cost);
+        json.put("notes", notes);
+        json.put("day", date.getDate());
+        json.put("month", date.getMonth());
+        json.put("year", date.getYear());
+        return json;
     }
 }
