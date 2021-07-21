@@ -8,135 +8,126 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class VacationTest
-{
+public class VacationTest {
     private Vacation vacation;
     private Trip hike;
     private Trip day;
     private Trip overnight;
+    private Date testDate =  new Date(2021, 5, 10);
 
     @BeforeEach
-    public void setup()
-    {
-        vacation = new Vacation(0, 0, "");
+    public void setup() {
+        vacation = new Vacation("test", 0, 0, "", testDate);
         hike = new Hike("a", 3, "none", 50,
-                new Date(2021, 5, 10), 7);
+                testDate, 7);
         day = new DayTrip("b", 4, "", 25,
-                new Date(2021, 5, 10), "picnic", 0);
-        overnight = new OvernightTrip("b", 4, "", 25,
-                new Date(2021, 5, 10), 5, 0, "hotel blue");
+                testDate, "picnic", 0);
+        overnight = new OvernightTrip("b", 4, "", 25, testDate, 5, 0, "hotel blue");
     }
 
     @Test
-    public void testAddTripDoesntContain()
-    {
+    public void testAddTripDoesntContain() {
         try {
             vacation.addTrip(hike);
             //pass
-        } catch (VacationTripException e)
-        {
+        } catch (VacationTripException e) {
             fail("caught exception");
         }
     }
 
     @Test
-    public void testAddTripContains()
-    {
-        try
-        {
+    public void testAddTripContains() {
+        try {
             vacation.addTrip(hike);
-            try
-            {
+            try {
                 vacation.addTrip(hike);
                 fail("didn't catch exception");
-            } catch (VacationTripException ex)
-            {
+            } catch (VacationTripException ex) {
                 //pass
             }
-        } catch (VacationTripException e)
-        {
+        } catch (VacationTripException e) {
             fail("caught first exception");
         }
     }
 
     @Test
-    public void testAddTripTwoDiff()
-    {
-        try
-        {
+    public void testAddTripTwoDiff() {
+        try {
             vacation.addTrip(hike);
-            try
-            {
+            try {
                 vacation.addTrip(day);
                 //pass
-            } catch (VacationTripException ex)
-            {
+            } catch (VacationTripException ex) {
                 fail("caught second exception");
             }
-        } catch (VacationTripException e)
-        {
+        } catch (VacationTripException e) {
             fail("caught first exception");
         }
     }
 
     @Test
-    public void testAddTripThreeDiff()
-    {
-        try
-        {
+    public void testAddTripThreeDiff() {
+        try {
             vacation.addTrip(hike);
-            try
-            {
+            try {
                 vacation.addTrip(day);
-                try
-                {
+                try {
                     vacation.addTrip(overnight);
                     //pass
-                } catch (VacationTripException exc)
-                {
+                } catch (VacationTripException exc) {
                     fail("caught third exception");
                 }
-            } catch (VacationTripException ex)
-            {
+            } catch (VacationTripException ex) {
                 fail("caught second exception");
             }
-        } catch (VacationTripException e)
-        {
+        } catch (VacationTripException e) {
             fail("caught first exception");
         }
     }
 
     @Test
-    public void testRemoveTripContains()
-    {
-        try
-        {
+    public void testRemoveTripContains() {
+        try {
             vacation.addTrip(hike);
-            try
-            {
+            try {
                 vacation.removeTrip(hike);
                 //pass
-            } catch (VacationTripException ex)
-            {
+            } catch (VacationTripException ex) {
                 fail("caught second exception");
             }
-        } catch (VacationTripException e)
-        {
+        } catch (VacationTripException e) {
             fail("caught first exception");
         }
     }
 
     @Test
-    public void testRemoveDoesntContain()
-    {
-        try
-        {
+    public void testRemoveDoesntContain() {
+        try {
             vacation.removeTrip(hike);
             fail("didn't catch exception");
-        } catch (VacationTripException e)
-        {
+        } catch (VacationTripException e) {
            //pass
         }
+    }
+
+    @Test
+    public void testRemoveTwice() {
+        try {
+                vacation.addTrip(day);
+                try {
+                    vacation.removeTrip(day);
+                    try {
+                        vacation.removeTrip(day);
+                        fail("didn't catch second remove exception");
+                    } catch (VacationTripException exc) {
+                        //pass
+                    }
+                } catch (VacationTripException ex) {
+                    fail("caught first remove exception");
+                }
+            } catch (VacationTripException e) {
+                fail("caught add trip exception");
+            }
     }
 
 }

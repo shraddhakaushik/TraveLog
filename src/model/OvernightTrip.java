@@ -1,9 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 
-public class OvernightTrip extends Trip
-{
+public class OvernightTrip extends Trip {
     private int days;
     private int cost;
     private String stay;
@@ -11,8 +12,7 @@ public class OvernightTrip extends Trip
     //Constructor for OvernightTrip where name, rating, notes, distance, and date are the same as in Trip, days is an
     //unrestricted integer value of the number of days spent at the location, cost is the dollar amount the trip cost
     //including stay and expenses, and stay is the place at which they spent the night
-    public OvernightTrip(String name, int rating, String notes, int distance, Date date, int days, int cost, String stay)
-    {
+    public OvernightTrip(String name, int rating, String notes, int distance, Date date, int days, int cost, String stay) {
         super(name, rating, notes, distance, date);
     }
 
@@ -42,4 +42,13 @@ public class OvernightTrip extends Trip
         this.stay = stay;
     }
 
+    @Override
+    public Class getSubclass() {
+        return OvernightTrip.class;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null; //TODO stub
+    }
 }

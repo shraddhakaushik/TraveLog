@@ -1,46 +1,44 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Vacation extends Travel
-{
+public class Vacation extends Travel {
     private List<Trip> trips;
     private int duration;
     private int cost;
     private String notes;
+    private String name;
+    private Date date;
 
     //Constructor for Vacation where duration indicates the number of days spent on vacations, cost is the total cost of
     //the vacation, and notes are personal notes the user can leave for themself
-    public Vacation(int duration, int cost, String notes)
-    {
+    public Vacation(String name, int duration, int cost, String notes, Date date) {
+        super(name, notes, date);
         this.duration = duration;
         trips = new ArrayList<>();
         this.cost = cost;
-        this.notes = notes;
+
     }
 
     //adds a new trip to trips if trips doesn't already contain the trip. Else, throws exception
-    public void addTrip(Trip t) throws VacationTripException
-    {
-        if (!trips.contains(t))
-        {
+    public void addTrip(Trip t) throws VacationTripException {
+        if (!trips.contains(t)) {
             trips.add(t);
             assert trips.contains(t);
-        } else
-        {
+        } else {
             throw new VacationTripException();
         }
     }
 
     //removes trip if it exists in trips, else throws exception
-    public void removeTrip(Trip t) throws VacationTripException
-    {
-        if (trips.contains(t))
-        {
+    public void removeTrip(Trip t) throws VacationTripException {
+        if (trips.contains(t)) {
             trips.remove(t);
-        } else
-        {
+        } else {
             throw new VacationTripException();
         }
     }
@@ -48,35 +46,33 @@ public class Vacation extends Travel
 
     //getters and setters for fields
 
-    public int getDuration()
-    {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration)
-    {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    public int getCost()
-    {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(int cost)
-    {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
-    public String getNotes()
-    {
-        return notes;
+    public List<Trip> getTrips() {
+        return trips;
     }
 
-    public void setNotes(String notes)
-    {
-        this.notes = notes;
+    @Override
+    public Class getSubclass() {
+        return Vacation.class;
     }
 
-
+    @Override
+    public JSONObject toJson() {
+        return null; //TODO stub
+    }
 }
