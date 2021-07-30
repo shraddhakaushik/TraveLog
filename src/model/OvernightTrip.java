@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class OvernightTrip extends Trip {
@@ -59,9 +60,9 @@ public class OvernightTrip extends Trip {
         json.put("rating", rating);
         json.put("notes", notes);
         json.put("distance", distance);
-        json.put("day", date.getDate());
-        json.put("month", date.getMonth());
-        json.put("year", date.getYear());
+        json.put("day", Calendar.DAY_OF_MONTH);
+        json.put("month", Calendar.MONTH);
+        json.put("year", Calendar.YEAR);
         json.put("days", days);
         json.put("cost", cost);
         json.put("stay", stay);

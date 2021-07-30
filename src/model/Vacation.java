@@ -4,6 +4,7 @@ import exceptions.VacationTripException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,9 +12,7 @@ public class Vacation extends Travel {
     private List<Trip> trips;
     private int duration;
     private int cost;
-    private String notes;
-    private String name;
-    private Date date;
+
 
     //Constructor for Vacation where duration indicates the number of days spent on vacations, cost is the total cost of
     //the vacation, and notes are personal notes the user can leave for themself
@@ -80,9 +79,9 @@ public class Vacation extends Travel {
         json.put("duration", duration);
         json.put("cost", cost);
         json.put("notes", notes);
-        json.put("day", date.getDate());
-        json.put("month", date.getMonth());
-        json.put("year", date.getYear());
+        json.put("day", Calendar.DAY_OF_MONTH);
+        json.put("month", Calendar.MONTH);
+        json.put("year", Calendar.YEAR);
         for (Trip t : trips) {
             t.toJson();
         }
