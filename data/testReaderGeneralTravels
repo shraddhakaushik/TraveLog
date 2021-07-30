@@ -1,0 +1,52 @@
+{
+  "name": "Travels",
+  "travels": [
+    {
+      "subclass": "Hike",
+      "name": "bob hike",
+      "rating": 1,
+      "notes": "",
+      "distance": 1,
+      "day": 1,
+      "month": 1,
+      "year": 2001,
+      "difficulty": 1
+    },
+    {
+      "subclass": "DayTrip",
+      "name": "bob day",
+      "rating": 1,
+      "notes": "",
+      "distance": 1,
+      "day": 1,
+      "month": 1,
+      "year": 2001,
+      "type": "picnic",
+      "dollars": 1
+    },
+    {
+      "subclass": "OvernightTrip",
+      "name": "bob overnight",
+      "rating": 1,
+      "notes": "",
+      "distance": 1,
+      "day": 1,
+      "month": 1,
+      "year": 2001,
+      "days": 1,
+      "cost": 1,
+      "stay": "hotel"
+    },
+    {
+      "subclass": "Vacation",
+      "name": "bob vacation",
+      "duration": 1,
+      "cost": 1,
+      "notes": "",
+      "day": 1,
+      "month": 1,
+      "year": 2001
+    }
+
+  ]
+}

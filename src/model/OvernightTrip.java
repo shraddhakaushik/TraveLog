@@ -15,6 +15,9 @@ public class OvernightTrip extends Trip {
     //including stay and expenses, and stay is the place at which they spent the night
     public OvernightTrip(String name, int rating, String notes, int distance, Date date, int days, int cost, String stay) {
         super(name, rating, notes, distance, date);
+        this.stay = stay;
+        this.cost = cost;
+        this.days = days;
     }
 
     //getters and setters for fields

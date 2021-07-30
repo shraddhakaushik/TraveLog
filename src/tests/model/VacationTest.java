@@ -1,11 +1,13 @@
-package tests;
+package tests.model;
 
 import exceptions.VacationTripException;
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -14,7 +16,8 @@ public class VacationTest {
     private Trip hike;
     private Trip day;
     private Trip overnight;
-    private Date testDate =  new Date(2021, 5, 10);
+    private Calendar cal = new GregorianCalendar(2021, 5, 10);
+    private Date testDate =  cal.getTime();
 
     @BeforeEach
     public void setup() {

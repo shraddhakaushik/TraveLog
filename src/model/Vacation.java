@@ -83,6 +83,9 @@ public class Vacation extends Travel {
         json.put("day", date.getDate());
         json.put("month", date.getMonth());
         json.put("year", date.getYear());
+        for (Trip t : trips) {
+            t.toJson();
+        }
         return json;
     }
 }

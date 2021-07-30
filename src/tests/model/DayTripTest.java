@@ -1,4 +1,4 @@
-package tests;
+package tests.model;
 
 import model.DayTrip;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DayTripTest {
     private DayTrip dayTrip;
-    private Date date = new Date(2012, Calendar.MAY, 21);
+    private Calendar cal = new GregorianCalendar(2012, Calendar.MAY, 21);
+    private Date date = cal.getTime();
 
     @BeforeEach
     public void setup() {
@@ -55,7 +57,8 @@ public class DayTripTest {
 
     @Test
     public void testSetDate() {
-        Date date2 = new Date(2002, Calendar.SEPTEMBER, 18);
+        Calendar cal = new GregorianCalendar(2002, Calendar.SEPTEMBER, 18);
+        Date date2 = cal.getTime();
         dayTrip.setDate(date2);
         assertEquals(date2, dayTrip.getDate());
     }

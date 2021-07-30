@@ -16,6 +16,7 @@ public class Travels {
 
     public Travels() {
         travels = new HashMap<>();
+        name = "Travels";
     }
 
     /* if travels doesn't already contain the given travel, then puts travel in travels hashmap with travel name as key.
@@ -43,8 +44,16 @@ public class Travels {
         } else throw new TravelsException();
     }
 
+    public Map<String, Travel> getTravels() {
+        return travels;
+    }
+
     public Map getMap() {
         return travels;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public JSONObject toJson() {

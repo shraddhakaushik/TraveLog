@@ -1,4 +1,4 @@
-package tests;
+package tests.model;
 
 import exceptions.TravelsException;
 import exceptions.VacationTripException;
@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TravelsTest {
     private Travels travels;
-    private Date testDate = new Date(05, Calendar.MAY, 2020);
+    private Calendar cal = new GregorianCalendar(2005, Calendar.MAY, 2020);
+    private Date testDate = cal.getTime();
     private Trip t1 = new Hike("hike", 4, "", 25, testDate, 5);
     private Trip t2 = new Hike("frog", 4, "", 25, testDate, 5);
     private Vacation v1 = new Vacation("vac", 4, 70, "", testDate);
@@ -185,7 +187,7 @@ public class TravelsTest {
         }
     }
 
-    /*
+    /* TODO
     test cases for remove:
         - remove a trip contained
         - remove a trip not contained

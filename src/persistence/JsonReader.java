@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.stream.Stream;
 
 public class JsonReader {
@@ -62,7 +64,9 @@ public class JsonReader {
         int month = object.getInt("month");
         int year = object.getInt("year");
         String subclass = object.getString("subclass");
-        Date date = new Date(day, month, year);
+        Calendar cal = new GregorianCalendar(year + 1900, month, day);
+        Date date = cal.getTime();
+
 
         switch (subclass) {
             case "Vacation":
