@@ -13,9 +13,8 @@ public class DayTrip extends Trip {
     //type refers to the type of excursion (eg. picnic, museum, etc) and dollars refers to the cost of the excursion in
     //dollars (0.00 if free)
     public DayTrip(String name, int rating, String notes, int distance, Date date, String type, int dollars) {
-        super(name, rating, notes, distance, date);
+        super(name, rating, notes, distance, date, dollars);
         this.type = type;
-        this.dollars = dollars;
     }
 
     //getters and setters for fields
@@ -24,17 +23,8 @@ public class DayTrip extends Trip {
         this.type = type;
     }
 
-
-    public void setDollars(int dollars) {
-        this.dollars = dollars;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public int getDollars() {
-        return dollars;
     }
 
     @Override

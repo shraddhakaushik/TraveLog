@@ -11,7 +11,7 @@ public class Hike extends Trip {
     //Constructor for Hike where name, rating, notes, distance, and date serve the same purpose as in Trip and difficulty
     //refers to an integer value between 1 and 10 to reflect how difficult the hike was, 10 being "extremely difficult"
     public Hike(String name, int rating, String notes, int distance, Date date, int difficulty) {
-        super(name, rating, notes, distance, date);
+        super(name, rating, notes, distance, date, 0);
         this.difficulty = difficulty;
     }
 

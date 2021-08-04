@@ -19,7 +19,7 @@ public class JsonTest {
         assertEquals(month, t.getDate().getMonth());
         assertEquals(year, t.getDate().getYear());
         assertEquals(type, t.getType());
-        assertEquals(dollars, t.getDollars());
+        assertEquals(dollars, t.getCost());
     }
 
     protected void checkHike(String subclass, String name, int rating, String notes, int distance, int day, int month, int year, int difficulty, Hike t) {

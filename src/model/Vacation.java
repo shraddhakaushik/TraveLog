@@ -17,10 +17,9 @@ public class Vacation extends Travel {
     //Constructor for Vacation where duration indicates the number of days spent on vacations, cost is the total cost of
     //the vacation, and notes are personal notes the user can leave for themself
     public Vacation(String name, int duration, int cost, String notes, Date date) {
-        super(name, notes, date);
+        super(name, notes, date, cost);
         this.duration = duration;
         trips = new ArrayList<>();
-        this.cost = cost;
 
     }
 
@@ -52,14 +51,6 @@ public class Vacation extends Travel {
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
     }
 
     public List<Trip> getTrips() {

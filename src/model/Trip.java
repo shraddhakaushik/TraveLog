@@ -11,8 +11,8 @@ public abstract class Trip extends Travel {
     //1 and 5 to indicate how enjoyable the trip was, 5 being "very enjoyable". Notes represents any extra notes the
     //user might want to leave to themselves about the trip, and distance represents how far from home the location is
     //in kilometres.
-    public Trip(String name, int rating, String notes, int distance, Date date) {
-        super(name, notes, date);
+    public Trip(String name, int rating, String notes, int distance, Date date, int cost) {
+        super(name, notes, date, cost);
         this.rating = rating;
         this.distance = distance;
 

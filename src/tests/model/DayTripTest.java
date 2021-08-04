@@ -28,7 +28,7 @@ public class DayTripTest {
         assertEquals(20, dayTrip.getDistance());
         assertEquals(date, dayTrip.getDate());
         assertEquals("picnic", dayTrip.getType());
-        assertEquals(5, dayTrip.getDollars());
+        assertEquals(5, dayTrip.getCost());
     }
 
     @Test
