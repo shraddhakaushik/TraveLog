@@ -1,0 +1,59 @@
+{
+    "travels": [
+        {
+            "difficulty": 3,
+            "notes": "",
+            "distance": 3,
+            "month": 2,
+            "year": 1,
+            "subclass": "Hike",
+            "name": "test hike",
+            "rating": 4,
+            "day": 5
+        },
+        {
+            "difficulty": 9,
+            "notes": "jsdlf",
+            "distance": 20,
+            "month": 2,
+            "year": 1,
+            "subclass": "Hike",
+            "name": "hike",
+            "rating": 3,
+            "day": 5
+        },
+        {
+            "difficulty": 3,
+            "notes": "",
+            "distance": 3,
+            "month": 2,
+            "year": 1,
+            "subclass": "Hike",
+            "name": "test hike",
+            "rating": 4,
+            "day": 5
+        },
+        {
+            "duration": 3,
+            "cost": 0,
+            "notes": "",
+            "month": 2,
+            "year": 1,
+            "subclass": "Vacation",
+            "name": "test",
+            "day": 5
+        },
+        {
+            "difficulty": 9,
+            "notes": "jsdlf",
+            "distance": 20,
+            "month": 2,
+            "year": 1,
+            "subclass": "Hike",
+            "name": "hike",
+            "rating": 3,
+            "day": 5
+        }
+    ],
+    "name": "Travels"
+}

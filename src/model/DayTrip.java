@@ -14,7 +14,7 @@ public class DayTrip extends Trip {
     //dollars (0.00 if free)
     public DayTrip(String name, int rating, String notes, int distance, Date date, String type, int dollars) {
         super(name, rating, notes, distance, date, dollars);
-        this.type = type;
+        this.type = type; 
     }
 
     //getters and setters for fields
