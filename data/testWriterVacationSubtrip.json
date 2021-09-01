@@ -1,0 +1,28 @@
+{
+    "travels": [
+        {
+            "duration": 5,
+            "cost": 5,
+            "notes": "",
+            "month": 2,
+            "year": 1,
+            "trips": "[day]",
+            "subclass": "Vacation",
+            "name": "vacay",
+            "day": 5
+        },
+        {
+            "notes": "",
+            "distance": 5,
+            "month": 2,
+            "year": 1,
+            "subclass": "DayTrip",
+            "name": "day",
+            "rating": 5,
+            "dollars": 0,
+            "type": "date",
+            "day": 5
+        }
+    ],
+    "name": "Travels"
+}

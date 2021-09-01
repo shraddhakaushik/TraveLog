@@ -108,8 +108,8 @@ public class JsonReader {
         int rating = object.getInt("rating");
         int distance = object.getInt("rating");
         String type = object.getString("type");
-        int dollars = object.getInt("dollars");
-        Travel day = new DayTrip(name, rating, notes, distance, date, type, dollars);
+        int cost = object.getInt("cost");
+        Travel day = new DayTrip(name, rating, notes, distance, date, type, cost);
         t.addTravel(day);
     }
 

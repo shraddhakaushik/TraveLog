@@ -30,6 +30,7 @@
             "notes": "",
             "month": 2,
             "year": 1,
+            "trips": "[]",
             "subclass": "Vacation",
             "name": "vacay",
             "day": 5
@@ -42,7 +43,7 @@
             "subclass": "DayTrip",
             "name": "day",
             "rating": 5,
-            "dollars": 20,
+            "dollars": 0,
             "type": "date",
             "day": 5
         }

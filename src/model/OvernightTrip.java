@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class OvernightTrip extends Trip {
     private int days;
-    private int cost;
     private String stay;
 
 
@@ -43,6 +42,7 @@ public class OvernightTrip extends Trip {
         return OvernightTrip.class;
     }
 
+    // creates a JSON object for overnight trip
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

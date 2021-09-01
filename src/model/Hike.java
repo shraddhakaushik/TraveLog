@@ -31,6 +31,7 @@ public class Hike extends Trip {
         return Hike.class;
     }
 
+    // creates a JSON object for hike
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

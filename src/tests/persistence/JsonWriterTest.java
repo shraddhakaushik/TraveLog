@@ -1,12 +1,14 @@
 package tests.persistence;
 
 import exceptions.TravelsException;
+import exceptions.VacationTripException;
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -90,7 +92,37 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    @Test
+    void testWriterVacationSubtrip() {
+        try {
+            Travels t = new Travels();
+            Vacation vacation = new Vacation("vacay", 5, 5, "", date);
+            DayTrip dayTrip = new DayTrip("day", 5, "", 5, date, "date", 20);
+            vacation.addTrip(dayTrip);
+            t.addTravel(vacation);
 
+            JsonWriter writer = new JsonWriter("./data/testWriterVacationSubtrip.json");
+            writer.open();
+            writer.write(t);
+            writer.close();
 
+            JsonReader reader = new JsonReader("./data/testWriterVacationSubtrip.json");
+            t = reader.read();
+            assertEquals("Travels", t.getName());
+            assertEquals(2, t.getTravels().size());
+            assertEquals(1, vacation.getTrips().size());
+            checkVacation("Vacation", "vacay", 5, 5, "", 18, 8, 2002 - 1900, vacation);
+            checkDay("DayTrip", "day", 5, "", 5, 18, 8, 2002 - 1900, "date", 20, dayTrip);
+
+        } catch (VacationTripException ve) {
+            fail("ve");
+        } catch (FileNotFoundException fe) {
+            fail("fe");
+        } catch (TravelsException te) {
+            fail("te");
+        } catch (IOException e) {
+            fail(e);
+        }
+    }
 
 }

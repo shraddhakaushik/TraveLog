@@ -11,7 +11,6 @@ import java.util.List;
 public class Vacation extends Travel {
     private List<Trip> trips;
     private int duration;
-    private int cost;
 
 
     //Constructor for Vacation where duration indicates the number of days spent on vacations, cost is the total cost of
@@ -62,6 +61,14 @@ public class Vacation extends Travel {
         return Vacation.class;
     }
 
+    public List<String> tripsToString() {
+        List<String> names = new ArrayList<>();
+        for (Trip t: trips) {
+            names.add(t.getName());
+        }
+        return names;
+    }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -73,7 +80,7 @@ public class Vacation extends Travel {
         json.put("day", Calendar.DAY_OF_MONTH);
         json.put("month", Calendar.MONTH);
         json.put("year", Calendar.YEAR);
-        json.put("trips", getTrips().toString());
+        json.put("trips", tripsToString().toString());
         for (Trip t : trips) {
             t.toJson();
         }

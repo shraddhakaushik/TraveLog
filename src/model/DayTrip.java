@@ -7,13 +7,12 @@ import java.util.Date;
 
 public class DayTrip extends Trip {
     private String type;
-    private int dollars;
 
     //Constructor for DayTrip where name, rating, notes, distance, and date serve the same purpose as in Trip and
     //type refers to the type of excursion (eg. picnic, museum, etc) and dollars refers to the cost of the excursion in
     //dollars (0.00 if free)
-    public DayTrip(String name, int rating, String notes, int distance, Date date, String type, int dollars) {
-        super(name, rating, notes, distance, date, dollars);
+    public DayTrip(String name, int rating, String notes, int distance, Date date, String type, int cost) {
+        super(name, rating, notes, distance, date, cost);
         this.type = type; 
     }
 
@@ -32,6 +31,8 @@ public class DayTrip extends Trip {
         return DayTrip.class;
     }
 
+
+    // creates a JSON object for day trip
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -44,7 +45,7 @@ public class DayTrip extends Trip {
         json.put("month", Calendar.MONTH);
         json.put("year", Calendar.YEAR);
         json.put("type", type);
-        json.put("dollars", dollars);
+        json.put("cost", cost);
         return json;
     }
 }

@@ -16,10 +16,9 @@ public class TraveLogApp {
     private Travels travels = new Travels();
     private JsonWriter writer;
     private JsonReader reader;
-    private boolean keepGoing = true;
+    private int numUntitled = 1;
 
     public TraveLogApp() {
-        //vacation = new Vacation("untitled vacation", 0, 0, "", null);
         typed = new Scanner(System.in);
         initiate();
     }
@@ -50,7 +49,7 @@ public class TraveLogApp {
                 }
                 menu();
             case "3":
-                //TODO
+                searchTravel();
                 break;
             case  "4":
                 break;
@@ -60,28 +59,169 @@ public class TraveLogApp {
         }
     }
 
+    private void searchTravel() {
+        System.out.println("Please type the name of the travel you would like to find");
+        String input = typed.nextLine();
+        if (travels.getTravels().containsKey(input)) {
+            Travel t = travels.getTravels().get(input);
+            System.out.println("Travel found!");
+            System.out.println("Would you like to view or edit?");
+            String in = typed.nextLine();
+            if (in.equals("view")) {
+                renderTravel(t);
+            } else if (in.equals("edit")) {
+                editTravel(t);
+            }
+        }
+        menu();
+    }
+
+    private void editTravel(Travel t) {
+        System.out.println("This is the travel currently:");
+        renderTravel(t);
+        System.out.println("Please indicate the field you would like to edit");
+        String input = typed.nextLine();
+        if (t.getClass().equals(Vacation.class)) {
+            editVac((Vacation) t, input);
+        } else if (t.getClass().equals(Hike.class)) {
+            editHike((Hike) t, input);
+        } else if (t.getClass().equals(DayTrip.class)) {
+            editDay((DayTrip) t, input);
+        } else if (t.getClass().equals(OvernightTrip.class)) {
+            editOvernight((OvernightTrip) t, input);
+        }
+        System.out.println("Travel successfully edited!");
+        renderTravel(t);
+        saveTravelsJSON();
+    }
+
+    private void editOvernight(OvernightTrip o, String input) {
+        switch (input) {
+            case "name":
+                setName(o);
+                break;
+            case "rating":
+                setRating(o);
+                break;
+            case "notes":
+                setNotes(o);
+                break;
+            case "distance":
+                setDistance(o);
+                break;
+            case "date":
+                setDate(o);
+                break;
+            case "days":
+                setDays(o);
+                break;
+            case "cost":
+                setCost(o);
+                break;
+            case "stay":
+                setStay(o);
+                break;
+            default:
+                throw new IllegalStateException("Invalid field");
+        }
+    }
+
+    private void editDay(DayTrip d, String input) {
+        switch (input) {
+            case "name":
+                setName(d);
+                break;
+            case "rating":
+                setRating(d);
+                break;
+            case "notes":
+                setNotes(d);
+                break;
+            case "distance":
+                setDistance(d);
+                break;
+            case "date":
+                setDate(d);
+                break;
+            case "type":
+                setType(d);
+                break;
+            case "cost":
+                setCost(d);
+                break;
+            default:
+                throw new IllegalStateException("Invalid field");
+        }
+
+    }
+
+    private void editHike(Hike h, String input) {
+        switch (input) {
+            case "name":
+                setName(h);
+                break;
+            case "rating":
+                setRating(h);
+                break;
+            case "notes":
+                setNotes(h);
+                break;
+            case "distance":
+                setDistance(h);
+                break;
+            case "date":
+                setDate(h);
+                break;
+            case "difficulty":
+                setDifficulty(h);
+                break;
+            default:
+                throw new IllegalStateException("Invalid field");
+        }
+    }
+
+    private void editVac(Vacation v, String input) {
+        switch (input) {
+            case "name":
+                setName(v);
+                break;
+            case "duration":
+                setDuration(v);
+                break;
+            case "cost":
+                setCost(v);
+                break;
+            case "notes":
+                setNotes(v);
+                break;
+            case "date":
+                setDate(v);
+                break;
+            default:
+                throw new IllegalStateException("Invalid field");
+        }
+
+    }
+
     private Travel createTravel(String type) {
         Travel t;
         switch (type) {
             case "hike":
                 t = createHike();
-                addTravelToTravels(t);
                 break;
             case "day trip":
                 t = createDayTrip();
-                addTravelToTravels(t);
                 break;
             case "overnight trip":
                 t = createOvernightTrip();
-                addTravelToTravels(t);
                 break;
             case "vacation":
                 t = createVacation();
-                addTravelToTravels(t);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
         }
+        addTravelToTravels(t);
         menu();
         return t;
     }
@@ -125,6 +265,7 @@ public class TraveLogApp {
     private void renderOvernight(OvernightTrip night) {
         System.out.println("**************************");
         System.out.println("name: " + night.getName());
+        System.out.println("type: Overnight Trip");
         System.out.println("rating: " + night.getRating() + "/5");
         System.out.println("notes: " + night.getNotes());
         System.out.println("distance: " + night.getDistance() + "km");
@@ -151,6 +292,7 @@ public class TraveLogApp {
     private void renderHike(Hike hike) {
         System.out.println("**************************");
         System.out.println("name: " + hike.getName());
+        System.out.println("type: Hike");
         System.out.println("rating: " + hike.getRating() + "/5");
         System.out.println("notes: " + hike.getNotes());
         System.out.println("distance: " + hike.getDistance() + "km");
@@ -168,14 +310,15 @@ public class TraveLogApp {
         setDate(day);
         setType(day);
         setCost(day);
+        System.out.println("New Day Trip Successfully Created:");
         renderDay(day);
         return day;
     }
 
     private void renderDay(DayTrip day) {
-        System.out.println("New Day Trip Successfully Created:");
         System.out.println("**************************");
         System.out.println("name: " + day.getName());
+        System.out.println("type: Day Trip");
         System.out.println("rating: " + day.getRating() + "/5");
         System.out.println("notes: " + day.getNotes());
         System.out.println("distance: " + day.getDistance() + "km");
@@ -195,19 +338,20 @@ public class TraveLogApp {
         boolean keepAsking = true;
         String trips = "";
         trips = addTripsToVac(vac, keepAsking, trips);
+        System.out.println("New Vacation Successfully Created:");
         renderVacation(vac);
         return vac;
     }
 
     private void renderVacation(Vacation vac) {
-        System.out.println("New Vacation Successfully Created:");
         System.out.println("**************************");
         System.out.println("name: " + vac.getName());
+        System.out.println("type: Vacation");
         System.out.println("duration: " + vac.getDuration() + " days");
         System.out.println("cost: $" + vac.getCost());
         System.out.println("notes: " + vac.getNotes());
         System.out.println("date: " + vac.getDate().toString());
-        System.out.println("trips: " + vac.getTrips().toString());
+        System.out.println("trips: " + vac.tripsToString().toString());
         System.out.println("**************************");
     }
 
@@ -239,19 +383,15 @@ public class TraveLogApp {
         switch (type) {
             case "hike":
                 t = createHike();
-                addTravelToTravels(t);
+                addTravelToTravelsVac(t);
                 break;
             case "day trip":
                 t = createDayTrip();
-                addTravelToTravels(t);
+                addTravelToTravelsVac(t);
                 break;
             case "overnight trip":
                 t = createOvernightTrip();
-                addTravelToTravels(t);
-                break;
-            case "vacation":
-                t = createVacation();
-                addTravelToTravels(t);
+                addTravelToTravelsVac(t);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
@@ -259,50 +399,103 @@ public class TraveLogApp {
         return t;
     }
 
+    private void addTravelToTravelsVac(Travel t) {
+        try {
+            travels.addTravel(t);
+        } catch (TravelsException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setDuration(Vacation vac) {
         System.out.println("How many days was the vacation?");
-        vac.setDuration(Integer.parseInt(typed.nextLine()));
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            vac.setDuration(0);
+        } else {
+            vac.setDuration(Integer.parseInt(input));
+        }
         System.out.println("duration: " + vac.getDuration() + " days");
     }
 
 
     private void setStay(OvernightTrip night) {
         System.out.println("Enter the place at which you stayed below: ");
-        night.setStay(typed.nextLine());
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            night.setStay("undocumented");
+        } else {
+            night.setStay(input);
+        }
         System.out.println("stay: " + night.getStay());
     }
 
     private void setDays(OvernightTrip night) {
         System.out.println("Enter the number of days this trip took. Please enter an integer value " + night.getDays());
-        night.setDays(Integer.parseInt(typed.nextLine()));
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            night.setDays(0);
+        } else {
+            night.setDays(Integer.parseInt(input));
+        }
         System.out.println("days: " + night.getDays());
     }
 
     private void setCost(Travel t) {
         System.out.println("In dollars, enter the total cost of the trip");
-        t.setCost(Integer.parseInt(typed.nextLine()));
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            t.setCost(0);
+        } else {
+            t.setCost(Integer.parseInt(input));
+        }
         System.out.println("cost: $" + t.getCost());
     }
 
     private void setType(DayTrip day) {
         System.out.println("What kind of a day trip was it? (picnic, date, coffee, drive, lake, etc.)");
-        day.setType(typed.nextLine());
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            day.setType("undocumented");
+        } else {
+            day.setType(input);
+        }
         System.out.println("type: " + day.getType());
     }
 
     private void setDifficulty(Hike hike) {
         System.out.println("Finally, enter the difficulty level of the hike on a scale of 1-10. Please enter an integer value");
-        hike.setDifficulty(Integer.parseInt(typed.nextLine()));
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            hike.setDifficulty(0);
+        } else {
+            hike.setDifficulty(Integer.parseInt(input));
+        }
         System.out.println("difficulty: " + hike.getDifficulty());
     }
 
     private void setDate(Travel t) {
         System.out.println("In order to log the date, first type the year below:");
-        int yr = Integer.parseInt(typed.nextLine());
+        String yrInput = typed.nextLine();
+        int yr = 0;
+        if (!yrInput.equals("")) {
+            yr = Integer.parseInt(yrInput);
+        }
+
         System.out.println("now type the month number below:");
-        int mn = Integer.parseInt(typed.nextLine()) - 1;
+        String mnInput = typed.nextLine();
+        int mn = 0;
+        if (!mnInput.equals("")) {
+            mn = Integer.parseInt(mnInput) - 1;
+        }
+
         System.out.println("now type the date below:");
-        int dt = Integer.parseInt(typed.nextLine());
+        String dtInput = typed.nextLine();
+        int dt = 0;
+        if (!dtInput.equals("")) {
+            dt = Integer.parseInt(dtInput);
+        }
+
         Calendar cal = new GregorianCalendar(yr, mn, dt);
         Date dte = cal.getTime();
         t.setDate(dte);
@@ -311,8 +504,12 @@ public class TraveLogApp {
 
     private void setDistance(Trip t) {
         System.out.println("In kilometres, enter the distance from home. Please enter an integer value");
-        String dist = typed.nextLine();
-        t.setDistance(Integer.parseInt(dist));
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            t.setDistance(0);
+        } else {
+            t.setDistance(Integer.parseInt(input));
+        }
         System.out.println("distance: " + t.getDistance() + " km");
     }
 
@@ -332,15 +529,25 @@ public class TraveLogApp {
 
     private void setRating(Trip t) {
         System.out.println("Enter a rating of the trip on a scale of 1-5. Please enter an integer value");
-        String rating = typed.nextLine();
-        t.setRating(Integer.parseInt(rating));
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            t.setRating(0);
+        } else {
+            t.setRating(Integer.parseInt(input));
+        }
         System.out.println("rating: " + t.getRating() + "/5");
     }
 
     private void setName(Travel t) {
         System.out.println("Please enter the name below:");
-        String name = typed.nextLine();
-        t.setName(name);
+
+        String input = typed.nextLine();
+        if (input.equals("")) {
+            t.setName("untitled" + numUntitled);
+            numUntitled++;
+        } else {
+            t.setName(input);
+        }
         System.out.println("name: " + t.getName());
     }
 
@@ -359,8 +566,10 @@ public class TraveLogApp {
         try {
             travels = reader.read();
             System.out.println("Loaded from " + JSON_STORE);
-        } catch (IOException | TravelsException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (TravelsException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE + "because of a TravelsException");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE + "because of an IOException");
         }
     }
 

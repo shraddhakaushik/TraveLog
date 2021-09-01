@@ -5,17 +5,20 @@ import org.json.JSONObject;
 import java.util.Date;
 
 public abstract class Travel {
-    private int cost;
+    protected int cost;
     protected String notes;
     protected String name;
     protected Date date;
 
+    //Constructor for Travel where name refers to the name of the travel, notes refers to any miscellaneous notes about
+    //the travel, date is the date on which the travel began/took place, and cost refers to the total cost of the travel
     public Travel(String name, String notes, Date date, int cost) {
         this.name = name;
         this.notes = notes;
         this.date = date;
         this.cost = cost;
     }
+
 
     public void setName(String name) {
         this.name = name;
